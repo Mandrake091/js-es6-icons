@@ -118,9 +118,15 @@ let randomColorVegetable = getRandomColor()
 let randomColorAnimal = getRandomColor()
 
 for (i = 0; i < icons.length; i++) {
-	
-		icons[i].color = randomColorUser;	
+	if (icons[i].color.includes('blue')){
+		icons[i].color = randomColorUser
+	}if (icons[i].color.includes('orange')){
+		icons[i].color = randomColorAnimal
+	}if (icons[i].color.includes('green')){
+		icons[i].color = randomColorVegetable
+	}
 }
+
 
 console.log(icons)
 
@@ -129,7 +135,7 @@ function getRandomColor() {
 	var letters = '0123456789ABCDEF';
 	var color = '#';
 	for (var i = 0; i < 6; i++) {
-	  color += letters[Math.floor(Math.random() * 16)];
+		color += letters[Math.floor(Math.random() * 16)];
 	}
 	return color;
 }
