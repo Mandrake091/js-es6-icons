@@ -112,45 +112,68 @@ let icons = [{
 	}
 ];
 
+
+let randomColorUser = getRandomColor()
+let randomColorVegetable = getRandomColor()
+let randomColorAnimal = getRandomColor()
+
+for (i = 0; i < icons.length; i++) {
+	
+		icons[i].color = randomColorUser;	
+}
+
+console.log(icons)
+
+//////
+function getRandomColor() {
+	var letters = '0123456789ABCDEF';
+	var color = '#';
+	for (var i = 0; i < 6; i++) {
+	  color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+}
+/////////
+
 const row = document.getElementById('iconsRow');
 
-
-
-
-
-
-
-function printCards() {
+function printCards(icone) {
 	let item = '';
-	for (let i = 0; i < icons.length; i++) {
-
-		onchange = function selectValue() {
-			let select = document.getElementById('select').value;
-			if (select === '1') {
-				let animali = icons.filter((icons) => icons.type === 'animal');	
-			}
-			if (select === '2') {
-				let vegetable = icons.filter((icons) => icons.type === 'vegetable');
-				console.log(vegetable)
-				console.log(select)
-
-			}if (select === '3') {
-				let user = icons.filter((icons) => icons.type === 'user');
-				console.log(user)
-				console.log(select)
-
-			}if(select === '0'){
-				console.log(select)
-			}
-		}
-		const iconCard = createCard(icons[i]);
+	for (let i = 0; i < icone.length; i++) {
+		const iconCard = createCard(icone[i]);
 		item += iconCard;
-		console.log(icons[i].type)
+		console.log(icone[i].type)
 	}
 	row.innerHTML = item;
 }
-printCards()
 
+
+onchange = function selectValue() {
+	let select = document.getElementById('select').value;
+
+	switch (select) {
+		case '1':
+			let animals = icons.filter((icons) => icons.type === 'animal');
+			printCards(animals)
+			break;
+		case '2':
+			let vegetable = icons.filter((icons) => icons.type === 'vegetable');
+			printCards(vegetable)
+			console.log(vegetable)
+			console.log(select)
+			break;
+		case '3':
+			let user = icons.filter((icons) => icons.type === 'user');
+			console.log(user)
+			console.log(select)
+			printCards(user)
+			break;
+		default:
+			printCards(icons);
+			break
+	}
+}
+printCards(icons);
 
 function createCard(icona) {
 	const card = `
@@ -161,7 +184,5 @@ function createCard(icona) {
 		<p class="m-0">${icona.name}</p>
   	</div>
 	`
-	
 	return card;
 }
-
