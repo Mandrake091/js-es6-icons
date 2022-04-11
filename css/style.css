@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.red{
+    color: red;
+}
+.blue{
+    color: blue;
+}
+
+.card{
+    width: 150px;
+    height: 75px;
+    background-color: rgb(59, 59, 59);
+    text-align: center;
+    filter: drop-shadow(2px 2px 2px #000000);
+}
+p{color: white;
+}
