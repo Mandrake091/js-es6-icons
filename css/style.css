@@ -13,7 +13,7 @@
 
 .card{
     width: 150px;
-    height: 75px;
+    height: 100px;
     background-color: rgb(59, 59, 59);
     text-align: center;
     filter: drop-shadow(2px 2px 2px #000000);

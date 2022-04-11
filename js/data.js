@@ -112,7 +112,6 @@ let icons = [{
 	}
 ];
 
-
 let randomColorUser = getRandomColor()
 let randomColorVegetable = getRandomColor()
 let randomColorAnimal = getRandomColor()
@@ -126,7 +125,6 @@ for (i = 0; i < icons.length; i++) {
 		icons[i].color = randomColorVegetable
 	}
 }
-
 
 console.log(icons)
 
