@@ -114,17 +114,43 @@ let icons = [{
 
 const row = document.getElementById('iconsRow');
 
-let i = 0;
+
+
+
+
+
 
 function printCards() {
 	let item = '';
 	for (let i = 0; i < icons.length; i++) {
+
+		onchange = function selectValue() {
+			let select = document.getElementById('select').value;
+			if (select === '1') {
+				let animali = icons.filter((icons) => icons.type === 'animal');	
+			}
+			if (select === '2') {
+				let vegetable = icons.filter((icons) => icons.type === 'vegetable');
+				console.log(vegetable)
+				console.log(select)
+
+			}if (select === '3') {
+				let user = icons.filter((icons) => icons.type === 'user');
+				console.log(user)
+				console.log(select)
+
+			}if(select === '0'){
+				console.log(select)
+			}
+		}
 		const iconCard = createCard(icons[i]);
 		item += iconCard;
 		console.log(icons[i].type)
 	}
 	row.innerHTML = item;
 }
+printCards()
+
 
 function createCard(icona) {
 	const card = `
@@ -135,8 +161,7 @@ function createCard(icona) {
 		<p class="m-0">${icona.name}</p>
   	</div>
 	`
-
-
+	
 	return card;
 }
-printCards()
+
