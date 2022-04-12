@@ -111,22 +111,37 @@ let icons = [{
 		color: 'blue'
 	}
 ];
+//Cambio colore per categoria;
+// let randomColorUser = getRandomColor()
+// let randomColorVegetable = getRandomColor()
+// let randomColorAnimal = getRandomColor()
 
-let randomColorUser = getRandomColor()
-let randomColorVegetable = getRandomColor()
-let randomColorAnimal = getRandomColor()
+// for (i = 0; i < icons.length; i++) {
+// 	if (icons[i].color.includes('blue')){
+// 		icons[i].color = randomColorUser
+// 	}if (icons[i].color.includes('orange')){
+// 		icons[i].color = randomColorAnimal
+// 	}if (icons[i].color.includes('green')){
+// 		icons[i].color = randomColorVegetable
+// 	}
+// }
 
-for (i = 0; i < icons.length; i++) {
-	if (icons[i].color.includes('blue')){
-		icons[i].color = randomColorUser
-	}if (icons[i].color.includes('orange')){
-		icons[i].color = randomColorAnimal
-	}if (icons[i].color.includes('green')){
-		icons[i].color = randomColorVegetable
+icons.forEach((icona) => {
+	icona.color = getRandomColor()
+})
+
+let typeForSelect = [];
+icons.forEach((icon) => {
+	if (!typeForSelect.includes(icon.type)) {
+		typeForSelect.push(icon.type)
 	}
-}
+})
 
-console.log(icons)
+const select = document.getElementById('select');
+typeForSelect.forEach((type) => {
+	const option = `<option value="${type}">${type.charAt(0).toUpperCase() + type.slice(1)}</option>`;
+	select.innerHTML += option;
+})
 
 //////
 function getRandomColor() {
@@ -139,14 +154,12 @@ function getRandomColor() {
 }
 /////////
 
-const row = document.getElementById('iconsRow');
-
 function printCards(icone) {
+	const row = document.getElementById('iconsRow');
 	let item = '';
 	for (let i = 0; i < icone.length; i++) {
 		const iconCard = createCard(icone[i]);
 		item += iconCard;
-		console.log(icone[i].type)
 	}
 	row.innerHTML = item;
 }
@@ -154,22 +167,17 @@ function printCards(icone) {
 
 onchange = function selectValue() {
 	let select = document.getElementById('select').value;
-
 	switch (select) {
-		case '1':
+		case 'animal':
 			let animals = icons.filter((icons) => icons.type === 'animal');
 			printCards(animals)
 			break;
-		case '2':
+		case 'vegetable':
 			let vegetable = icons.filter((icons) => icons.type === 'vegetable');
 			printCards(vegetable)
-			console.log(vegetable)
-			console.log(select)
 			break;
-		case '3':
+		case 'user':
 			let user = icons.filter((icons) => icons.type === 'user');
-			console.log(user)
-			console.log(select)
 			printCards(user)
 			break;
 		default:
@@ -183,9 +191,9 @@ function createCard(icona) {
 	const card = `
 	<div class="card d-flex align-items-center justify-content-center">
 		<i style= "color:${icona.color}"
-	 	class="fa-solid ${icona.prefix}${icona.name} fs-1" aria-hidden="true">
+	 	class="${icona.family} ${icona.prefix}${icona.name} fs-1" aria-hidden="true">
 	 	</i>
-		<p class="m-0">${icona.name}</p>
+		<p class="m-0">${(icona.name).toUpperCase()}</p>
   	</div>
 	`
 	return card;
